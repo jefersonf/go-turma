@@ -2,14 +2,34 @@ package main
 
 import (
 	"bufio"
+	"log"
+	"net/http"
 	"os"
 	"strings"
+	"text/template"
 	"turminha/turma"
 	"turminha/types"
 )
 
+var (
+	listenAddr = "localhost:3000"
+	assetsPath = "static/"
+)
+
 func main() {
-	//data := parseData()
+	data := parseData()
+
+	http.Handle("/static/",
+		http.StripPrefix("/static/",
+			http.FileServer(http.Dir(assetsPath))))
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("layout/index.html"))
+		tmpl.Execute(w, data)
+	})
+
+	log.Println("server running at", listenAddr)
+	panic(http.ListenAndServe(listenAddr, nil))
 }
 
 func parseData() *turma.Turma {
@@ -25,7 +45,7 @@ func parseData() *turma.Turma {
 	t := turma.New()
 
 	for turmaScanner.Scan() {
-		s := strings.Split(turmaScanner.Text(), ",")
+		s := strings.Split(strings.Trim(turmaScanner.Text(), "\""), ",")
 		t.AddChild(types.Child{
 			FullName:  s[0],
 			BirthDate: s[1],
