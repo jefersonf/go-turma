@@ -7,8 +7,9 @@ import (
 	"os"
 	"strings"
 	"text/template"
-	"turminha/turma"
-	"turminha/types"
+
+	"github.com/jefersonf/go-turma/turma"
+	"github.com/jefersonf/go-turma/types"
 )
 
 var (
