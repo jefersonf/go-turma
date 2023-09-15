@@ -8,29 +8,6 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func TestGeTFirstNames(t *testing.T) {
-
-	turma := Turma{
-		ChildrenList: []types.Child{
-			{
-				FullName: "Maria Silva",
-			},
-			{
-				FullName: "Jose Lima",
-			},
-			{
-				FullName: "Sebastiao de Souza Cariri",
-			},
-		},
-	}
-
-	expected := []string{"Maria", "Jose", "Sebastiao"}
-	result := turma.GetFirstNames()
-	if slices.Compare(result, expected) != 0 {
-		t.Errorf("Got %v, want %v", result, expected)
-	}
-}
-
 func TestGeTFirstAndLastNames(t *testing.T) {
 
 	turma := Turma{
@@ -48,7 +25,10 @@ func TestGeTFirstAndLastNames(t *testing.T) {
 	}
 
 	expected := []string{"Maria Silva", "Jose Lima", "Sebastiao Cariri"}
-	result := turma.GetFirstAndLastNames()
+	result := make([]string, turma.Size())
+	for i, child := range turma.ChildrenList {
+		result[i], _ = GetFirstAndLastName(child.FullName)
+	}
 	if slices.Compare(result, expected) != 0 {
 		t.Errorf("Got %v, want %v", result, expected)
 	}

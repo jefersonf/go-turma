@@ -11,7 +11,9 @@
     <div class="container px-4 py-5">
         <h2 class="pb-2 border-bottom">Turminha de Miguel</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-            {{ range .GetFirstNames }}
+
+            {{ range .ChildrenList }}
+
             <div class="feature col rounded pt-3">
                 <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -19,12 +21,14 @@
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
                     </svg>
                 </div>
-                <h3 class="fs-2 text-body-emphasis">{{ . }}</h3>
+                <h3 class="fs-2 text-body-emphasis">{{ .Name }}</h3>
                 <p>
-                    descrip
+                    <b>{{ .Age }} yo</b> &bull; {{ .BirthDate }} &bull; {{ .Genre }}
                 </p>
             </div>
+
             {{ end }}
+
         </div>
     </div>
 </body>

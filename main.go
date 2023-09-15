@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"text/template"
+	"time"
 
 	"turminha/turma"
 	"turminha/types"
@@ -46,11 +47,33 @@ func parseData() *turma.Turma {
 	t := turma.New()
 
 	for turmaScanner.Scan() {
-		s := strings.Split(strings.Trim(turmaScanner.Text(), "\""), ",")
+		s := strings.Split(strings.Trim(turmaScanner.Text(), "\"'"), ",")
+
+		fullname := strings.Trim(s[0], "\"'")
+		name, _ := turma.GetFirstAndLastName(s[0])
+
+		b, err := time.Parse("02/01/2006", strings.Trim(s[1], "\"'"))
+		if err != nil {
+			panic(err)
+		}
+		ageInSecs := time.Since(b).Seconds()
+		childAge := ageInSecs / (60 * 60 * 24 * 365)
+		birthDate := b.Format("Jan 02, 2006")
+
+		var genre string
+		s[3] = strings.Trim(s[3], "\"'")
+		if strings.Compare(s[3], "M") == 0 {
+			genre = "Boy"
+		} else if strings.Compare(s[3], "F") == 0 {
+			genre = "Girl"
+		}
+
 		t.AddChild(types.Child{
-			FullName:  s[0],
-			BirthDate: s[1],
-			Genre:     s[3],
+			FullName:  fullname,
+			Name:      name,
+			BirthDate: birthDate,
+			Age:       int(childAge),
+			Genre:     genre,
 		})
 	}
 
