@@ -3,7 +3,7 @@ package turma
 import (
 	"strings"
 
-	"github.com/jefersonf/go-turma/types"
+	"turminha/types"
 )
 
 type Turma struct {

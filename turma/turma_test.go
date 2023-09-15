@@ -3,7 +3,8 @@ package turma
 import (
 	"testing"
 
-	"github.com/jefersonf/go-turma/types"
+	"turminha/types"
+
 	"golang.org/x/exp/slices"
 )
 
