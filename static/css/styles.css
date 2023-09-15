@@ -1,8 +1,10 @@
 
-body {
-    margin: 0;
+.feature {
+    border: 2px dashed transparent;
 }
 
-h1 {
-    color: red;
+.feature:hover {
+    cursor: pointer;
+    border-style: dashed;
+    border-color: lightgray;
 }
