@@ -1,18 +1,14 @@
 package turma
 
-import (
-	"turminha/types"
-)
-
 type Turma struct {
-	ChildrenList []types.Child
+	ChildrenList []Child
 }
 
 func New() *Turma {
 	return &Turma{}
 }
 
-func (t *Turma) AddChild(child types.Child) {
+func (t *Turma) AddChild(child Child) {
 	t.ChildrenList = append(t.ChildrenList, child)
 }
 

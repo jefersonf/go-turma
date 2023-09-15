@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"turminha/turma"
-	"turminha/types"
 )
 
 var (
@@ -68,7 +67,7 @@ func parseData() *turma.Turma {
 			genre = "Girl"
 		}
 
-		t.AddChild(types.Child{
+		t.AddChild(turma.Child{
 			FullName:  fullname,
 			Name:      name,
 			BirthDate: birthDate,

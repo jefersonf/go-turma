@@ -1,4 +1,4 @@
-package types
+package turma
 
 type Child struct {
 	FullName  string

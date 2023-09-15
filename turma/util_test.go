@@ -3,15 +3,13 @@ package turma
 import (
 	"testing"
 
-	"turminha/types"
-
 	"golang.org/x/exp/slices"
 )
 
 func TestGeTFirstAndLastNames(t *testing.T) {
 
 	turma := Turma{
-		ChildrenList: []types.Child{
+		ChildrenList: []Child{
 			{
 				FullName: "Maria Nascimento silva",
 			},
