@@ -8,8 +8,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/jefersonf/go-turma/turma"
-	"github.com/jefersonf/go-turma/types"
+	"turminha/turma"
+	"turminha/types"
 )
 
 var (
