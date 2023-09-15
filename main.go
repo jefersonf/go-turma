@@ -55,8 +55,7 @@ func parseData() *turma.Turma {
 		if err != nil {
 			panic(err)
 		}
-		ageInSecs := time.Since(b).Seconds()
-		childAge := ageInSecs / (60 * 60 * 24 * 365)
+		childAge := time.Since(b).Seconds() / (60 * 60 * 24 * 365)
 		birthDate := b.Format("Jan 02, 2006")
 
 		var genre string
