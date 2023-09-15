@@ -10,6 +10,8 @@ import (
 	"time"
 
 	"turminha/turma"
+
+	"golang.org/x/exp/slices"
 )
 
 var (
@@ -55,7 +57,8 @@ func parseData() *turma.Turma {
 		if err != nil {
 			panic(err)
 		}
-		childAge := time.Since(b).Seconds() / (60 * 60 * 24 * 365)
+		childAgeInMinutes := time.Since(b).Minutes()
+		childAge := childAgeInMinutes / (60 * 24 * 365)
 		birthDate := b.Format("Jan 02, 2006")
 
 		var genre string
@@ -67,13 +70,23 @@ func parseData() *turma.Turma {
 		}
 
 		t.AddChild(turma.Child{
-			FullName:  fullname,
-			Name:      name,
-			BirthDate: birthDate,
-			Age:       int(childAge),
-			Genre:     genre,
+			FullName:     fullname,
+			Name:         name,
+			BirthDate:    birthDate,
+			Age:          int(childAge),
+			AgeInMinutes: childAgeInMinutes,
+			Genre:        genre,
 		})
 	}
+
+	slices.SortFunc(t.ChildrenList, func(c1 turma.Child, c2 turma.Child) int {
+		if int(c1.AgeInMinutes) < int(c2.AgeInMinutes) {
+			return -1
+		} else if int(c1.AgeInMinutes) > int(c2.AgeInMinutes) {
+			return 1
+		}
+		return 0
+	})
 
 	return t
 }

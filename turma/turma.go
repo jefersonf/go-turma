@@ -1,7 +1,9 @@
 package turma
 
 type Turma struct {
-	ChildrenList []Child
+	ChildrenList  []Child
+	OldestChild   string
+	YoungestChild string
 }
 
 func New() *Turma {
