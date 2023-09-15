@@ -1,7 +1,9 @@
 package turma
 
 import (
+	"fmt"
 	"strings"
+	"unicode"
 
 	"turminha/types"
 )
@@ -28,4 +30,21 @@ func (t *Turma) GetFirstNames() []string {
 		firstNames[i] = strings.Split(child.FullName, " ")[0]
 	}
 	return firstNames
+}
+
+func (t *Turma) GetFirstAndLastNames() []string {
+	shortNames := make([]string, t.Size())
+	for i, child := range t.ChildrenList {
+		nameParts := strings.Split(child.FullName, " ")
+		firtName := capitalize(nameParts[0])
+		lastName := capitalize(nameParts[len(nameParts)-1])
+		shortNames[i] = fmt.Sprintf("%s %s", firtName, lastName)
+	}
+	return shortNames
+}
+
+func capitalize(s string) string {
+	runes := []rune(s)
+	runes[0] = unicode.ToUpper(runes[0])
+	return string(runes)
 }
