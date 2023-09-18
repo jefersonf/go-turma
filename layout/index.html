@@ -14,38 +14,21 @@
     <div class="container px-4 py-5">
         <h2 class="pb-2 border-bottom">Turminha de Miguel &bull; ({{ .Size }} students)</h2>
 
-        <form>
+        <form hx-post="/sort" hx-target="#childrenList" hx-swap="outerHTML" hx-trigger="change">
+
             <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Sort
-                </button>
-                <ul class="dropdown-menu">
-                  <li><button class="dropdown-item" type="button">By name</button></li>
-                  <li><button class="dropdown-item" type="button">Youngest first</button></li>
-                  <li><button class="dropdown-item" type="button">Oldest first</button></li>
-                </ul>
+                <label for="sorting-type"></label>
+                <select class="btn btn-primary dropdown-toggle" name="sorttypes-" id="sorting-type">
+                <option value="bn" selected>Sorted by name</option>
+                <option value="yf">Youngest first</option>
+                <option value="of">Oldest first</option>
+                </select>
             </div>
+
         </form>
-
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-
-            {{ range .ChildrenList }}
-
-            <div class="feature col rounded pt-3">
-                <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
-                    </svg>
-                </div>
-                <h3 class="fs-2 text-body-emphasis">{{ .Name }}</h3>
-                <p>
-                    <b>{{ .Age }} yo</b> &bull; {{ .BirthDate }} &bull; {{ .Genre }}
-                </p>
-            </div>
-
-            {{ end }}
-
+        
+        <div id="childrenList" class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            {{ template "childrenList" . }}
         </div>
     </div>
 </body>
