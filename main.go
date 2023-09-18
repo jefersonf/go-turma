@@ -27,7 +27,26 @@ func main() {
 			http.FileServer(http.Dir(assetsPath))))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("layout/index.html"))
+		tmpl := template.Must(template.ParseFiles("layout/index.html", "layout/children-list.html"))
+		tmpl.Execute(w, data)
+	})
+
+	http.HandleFunc("/sort", func(w http.ResponseWriter, r *http.Request) {
+		// log.Print(r.Header.Get("HX-Request"))
+		sortingType := r.PostFormValue("sorting-type")
+		order := 1
+		if sortingType == "fy" {
+			order *= -1
+		}
+		slices.SortFunc(data.ChildrenList, func(c1 turma.Child, c2 turma.Child) int {
+			if int(c1.AgeInMinutes) < int(c2.AgeInMinutes) {
+				return -order
+			} else if int(c1.AgeInMinutes) > int(c2.AgeInMinutes) {
+				return order
+			}
+			return 0
+		})
+		tmpl := template.Must(template.ParseFiles("layout/children-list.html"))
 		tmpl.Execute(w, data)
 	})
 
@@ -78,15 +97,6 @@ func parseData() *turma.Turma {
 			Genre:        genre,
 		})
 	}
-
-	slices.SortFunc(t.ChildrenList, func(c1 turma.Child, c2 turma.Child) int {
-		if int(c1.AgeInMinutes) < int(c2.AgeInMinutes) {
-			return -1
-		} else if int(c1.AgeInMinutes) > int(c2.AgeInMinutes) {
-			return 1
-		}
-		return 0
-	})
 
 	return t
 }
