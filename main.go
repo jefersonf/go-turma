@@ -61,7 +61,7 @@ func parseData() *turma.Turma {
 	turmaScanner := bufio.NewScanner(turmaFile)
 	turmaScanner.Split(bufio.ScanLines)
 
-	// Skip first since it is a header
+	// Skip first since it is the header
 	turmaScanner.Scan()
 
 	t := turma.New()
