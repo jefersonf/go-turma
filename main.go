@@ -31,6 +31,7 @@ func main() {
 	http.HandleFunc("/sort", func(w http.ResponseWriter, r *http.Request) {
 		// log.Print(r.Header.Get("HX-Request"))
 		sortingType := r.PostFormValue("sorting-type")
+		log.Printf("sorting type = %v", sortingType)
 		order := 1
 		if sortingType == "fy" {
 			order *= -1
@@ -43,7 +44,7 @@ func main() {
 			}
 			return 0
 		})
-		tmpl := template.Must(template.ParseFiles("layout/children-list.html"))
+		tmpl := template.Must(template.ParseFiles("layout/index.html", "layout/children-list.html"))
 		tmpl.Execute(w, data)
 	})
 

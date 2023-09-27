@@ -14,20 +14,16 @@
     <div class="container px-4 py-5">
         <h2 class="pb-2 border-bottom">Turminha de Miguel &bull; ({{ .Size }} students)</h2>
 
-        <form hx-post="/sort" hx-target="#childrenList" hx-swap="outerHTML" hx-trigger="change">
+        <div class="dropdown">
+            <label for="sorting-type"></label>
+            <select class="btn btn-primary dropdown-toggle" name="sorting-types" id="sorting-type">
+            <option value="name" selected><a href="/?o=name">Sorted by name</a></option>
+            <option value="youngestFirst"><a href="/?o=youngestFirst">Youngest first</a></option>
+            <option value="oldestFirst"><a href="/?o=oldestFirst">Oldest first</a></option>
+            </select>
+        </div>
 
-            <div class="dropdown">
-                <label for="sorting-type"></label>
-                <select class="btn btn-primary dropdown-toggle" name="sorttypes-" id="sorting-type">
-                <option value="bn" selected>Sorted by name</option>
-                <option value="yf">Youngest first</option>
-                <option value="of">Oldest first</option>
-                </select>
-            </div>
-
-        </form>
-        
-        <div id="childrenList" class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             {{ template "childrenList" . }}
         </div>
     </div>
