@@ -25,7 +25,7 @@ func (t *Turma) Size() int {
 
 func (t *Turma) SortByAge() {
 	slices.SortFunc(t.ChildrenList, func(a, b Child) int {
-		if a.AgeInMinutes > b.AgeInMinutes {
+		if a.AgeInMinutes() > b.AgeInMinutes() {
 			return 1
 		}
 		return -1
@@ -60,7 +60,6 @@ func (t *Turma) getChildAt(index int) (*Child, error) {
 	child.FullName = t.ChildrenList[index].FullName
 	child.Name = t.ChildrenList[index].Name
 	child.Age = t.ChildrenList[index].Age
-	child.AgeInMinutes = t.ChildrenList[index].AgeInMinutes
 	child.BirthDate = t.ChildrenList[index].BirthDate
 	child.Genre = t.ChildrenList[index].Genre
 	return child, nil

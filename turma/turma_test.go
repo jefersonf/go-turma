@@ -7,11 +7,11 @@ import (
 func TestSortByAge(t *testing.T) {
 
 	children := map[int]Child{
-		1: {AgeInMinutes: 3.4},
-		3: {AgeInMinutes: 4.2},
-		0: {AgeInMinutes: 3.1},
-		2: {AgeInMinutes: 3.5},
-		4: {AgeInMinutes: 4.7},
+		1: {BirthDate: "Jan 12, 2020"},
+		2: {BirthDate: "Oct 11, 2019"},
+		3: {BirthDate: "Mar 23, 2019"},
+		0: {BirthDate: "Sep 11, 2020"},
+		4: {BirthDate: "Feb 01, 2019"},
 	}
 
 	turma := New()
@@ -19,9 +19,9 @@ func TestSortByAge(t *testing.T) {
 		turma.AddChild(c)
 	}
 	turma.SortByAge()
-	for i := range turma.ChildrenList {
-		if children[i].AgeInMinutes != turma.ChildrenList[i].AgeInMinutes {
-			t.Errorf("Got %v, want %v", children[i].AgeInMinutes, turma.ChildrenList[i].AgeInMinutes)
+	for i, c := range turma.ChildrenList {
+		if c.AgeInMinutes() != turma.ChildrenList[i].AgeInMinutes() {
+			t.Errorf("Got %v, want %v", c.AgeInMinutes(), turma.ChildrenList[i].AgeInMinutes())
 		}
 	}
 }
@@ -29,11 +29,11 @@ func TestSortByAge(t *testing.T) {
 func TestGetOldest(t *testing.T) {
 
 	children := map[int]Child{
-		1: {AgeInMinutes: 3.4},
-		3: {AgeInMinutes: 4.2},
-		0: {AgeInMinutes: 3.1},
-		2: {AgeInMinutes: 3.5},
-		4: {AgeInMinutes: 4.7},
+		1: {BirthDate: "Jan 12, 2020"},
+		2: {BirthDate: "Oct 11, 2019"},
+		3: {BirthDate: "Mar 23, 2019"},
+		0: {BirthDate: "Sep 11, 2020"},
+		4: {BirthDate: "Feb 01, 2019"},
 	}
 
 	turma := New()
@@ -45,7 +45,8 @@ func TestGetOldest(t *testing.T) {
 	if err != nil {
 		t.Errorf("Got err, want nil")
 	}
-	if oldestChild.AgeInMinutes != children[4].AgeInMinutes {
-		t.Errorf("Got %v, want %v", oldestChild.AgeInMinutes, children[4].AgeInMinutes)
+	oldestedOnList := children[4]
+	if oldestChild.AgeInMinutes() != oldestedOnList.AgeInMinutes() {
+		t.Errorf("Got %v, want %v", oldestChild.AgeInMinutes(), oldestedOnList.AgeInMinutes())
 	}
 }
