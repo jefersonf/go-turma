@@ -1,3 +1,9 @@
 # go-turma
 
-Go + HTMX practice
+Practicing Go templates!
+
+- Go
+- HTMX
+- Bootstrap
+
+![Turminha App](/ui/Screenshot-app-turminha.png)
