@@ -9,7 +9,7 @@ import (
 )
 
 func ParseData() *turma.Turma {
-	turmaFile, err := os.Open("data/turma.csv")
+	turmaFile, err := os.Open("data/sample.csv")
 	checkErr(err)
 
 	turmaScanner := bufio.NewScanner(turmaFile)
