@@ -43,12 +43,11 @@ func ParseData() *turma.Turma {
 		}
 
 		t.AddChild(turma.Child{
-			FullName:     fullname,
-			Name:         name,
-			BirthDate:    birthDate,
-			Age:          int(childAge),
-			AgeInMinutes: childAgeInMinutes,
-			Genre:        genre,
+			FullName:  fullname,
+			Name:      name,
+			BirthDate: birthDate,
+			Age:       int(childAge),
+			Genre:     genre,
 		})
 	}
 
