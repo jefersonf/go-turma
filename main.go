@@ -37,9 +37,9 @@ func main() {
 			if orderBy != "youngestFirst" {
 				order *= -1
 			}
-			if int(c1.AgeInMinutes) < int(c2.AgeInMinutes) {
+			if int(c1.AgeInMinutes()) < int(c2.AgeInMinutes()) {
 				return -order
-			} else if int(c1.AgeInMinutes) > int(c2.AgeInMinutes) {
+			} else if int(c1.AgeInMinutes()) > int(c2.AgeInMinutes()) {
 				return order
 			}
 			return 0
