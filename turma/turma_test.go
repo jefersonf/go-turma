@@ -25,3 +25,27 @@ func TestSortByAge(t *testing.T) {
 		}
 	}
 }
+
+func TestGetOldest(t *testing.T) {
+
+	children := map[int]Child{
+		1: {AgeInMinutes: 3.4},
+		3: {AgeInMinutes: 4.2},
+		0: {AgeInMinutes: 3.1},
+		2: {AgeInMinutes: 3.5},
+		4: {AgeInMinutes: 4.7},
+	}
+
+	turma := New()
+	for _, c := range children {
+		turma.AddChild(c)
+	}
+
+	oldestChild, err := turma.GetOldest()
+	if err != nil {
+		t.Errorf("Got err, want nil")
+	}
+	if oldestChild.AgeInMinutes != children[4].AgeInMinutes {
+		t.Errorf("Got %v, want %v", oldestChild.AgeInMinutes, children[4].AgeInMinutes)
+	}
+}
