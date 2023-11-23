@@ -19,7 +19,7 @@ func splitFullname(s string) ([]string, error) {
 func GetFirstAndLastName(fullname string) (string, error) {
 	p, err := splitFullname(fullname)
 	if err != nil {
-		return "", fmt.Errorf("unable to get first name: %w", err)
+		return "", fmt.Errorf("fail to get first name: %w", err)
 	}
 	firstName := Capitalize(p[0])
 	if len(p) > 1 {
