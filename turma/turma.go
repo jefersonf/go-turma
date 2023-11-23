@@ -50,7 +50,7 @@ func (t *Turma) GetYoungest() (*Child, error) {
 
 func (t *Turma) getChildAt(index int) (*Child, error) {
 	if t.Size() == 0 {
-		return &Child{}, errors.New("no children")
+		return &Child{}, errors.New("no child")
 	}
 	if index >= t.Size() {
 		return &Child{}, errors.New("invalid position")
