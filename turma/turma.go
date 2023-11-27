@@ -56,11 +56,14 @@ func (t *Turma) getChildAt(index int) (*Child, error) {
 		return &Child{}, errors.New("invalid position")
 	}
 	t.SortByAge()
-	child := new(Child)
-	child.FullName = t.ChildrenList[index].FullName
-	child.Name = t.ChildrenList[index].Name
-	child.Age = t.ChildrenList[index].Age
-	child.BirthDate = t.ChildrenList[index].BirthDate
-	child.Genre = t.ChildrenList[index].Genre
+	child := &Child{
+		FullName: t.ChildrenList[index].FullName,
+		FullName: t.ChildrenList[index].FullName,
+		Name: t.ChildrenList[index].Name,
+		Age: t.ChildrenList[index].Age,
+		BirthDate: t.ChildrenList[index].BirthDate,
+		Genre: t.ChildrenList[index].Genre,
+	}
+
 	return child, nil
 }
