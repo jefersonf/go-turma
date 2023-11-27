@@ -6,7 +6,7 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func TestGeTFirstAndLastNames(t *testing.T) {
+func TestGetFirstAndLastNames(t *testing.T) {
 
 	turma := Turma{
 		ChildrenList: []Child{
