@@ -48,21 +48,21 @@ func (t *Turma) GetYoungest() (*Child, error) {
 	return child, nil
 }
 
-func (t *Turma) getChildAt(index int) (*Child, error) {
+func (t *Turma) getChildAt(position int) (*Child, error) {
 	if t.Size() == 0 {
-		return &Child{}, errors.New("no child")
+		return &Child{}, errors.New("no children")
 	}
-	if index >= t.Size() {
+	if position >= t.Size() {
 		return &Child{}, errors.New("invalid position")
 	}
 	t.SortByAge()
 	child := &Child{
-		FullName: t.ChildrenList[index].FullName,
-		FullName: t.ChildrenList[index].FullName,
-		Name: t.ChildrenList[index].Name,
-		Age: t.ChildrenList[index].Age,
-		BirthDate: t.ChildrenList[index].BirthDate,
-		Genre: t.ChildrenList[index].Genre,
+		FullName: t.ChildrenList[position].FullName,
+		FullName: t.ChildrenList[position].FullName,
+		Name: t.ChildrenList[position].Name,
+		Age: t.ChildrenList[position].Age,
+		BirthDate: t.ChildrenList[position].BirthDate,
+		Genre: t.ChildrenList[position].Genre,
 	}
 
 	return child, nil
